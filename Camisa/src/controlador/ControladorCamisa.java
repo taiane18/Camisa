@@ -31,5 +31,32 @@ public class ControladorCamisa {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
 }
+
+    public static void alterar(ManutencaoCamisa man){
+        Camisa objeto = new Camisa();
+        //definir todos os atributos
+        objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText()));
+        objeto.setCor(man.jtfCor.getText());
+        objeto.setTamanho(man.jtfTamanho.getText());
+        
+        boolean resultado = CamisaDao.alterar(objeto);
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
+    }
+
+    public static void excluir(ManutencaoCamisa man){
+        Camisa objeto = new Camisa();
+        objeto.setCodigo(Integer.parseInt(man.jtfCodigo.getText())); //só precisa definir a chave primeira
+        
+        boolean resultado = CamisaDao.excluir(objeto);
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
+    }
     
 }

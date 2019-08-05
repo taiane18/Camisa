@@ -42,4 +42,33 @@ public class CamisaDao {
         }
     }
     
+    public static boolean alterar(Camisa objeto) {
+        String sql = "UPDATE camisa SET cor = ?, tamanho = ? WHERE codigo=?";
+        try {
+            PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, objeto.getCor()); 
+            ps.setString(2, objeto.getTamanho());
+            ps.setInt(3, objeto.getCodigo());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+    
+    
+    public static boolean excluir(Camisa objeto) {
+        String sql = "DELETE FROM camisa WHERE codigo=?";
+        try {
+            PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
+            ps.setInt(1, objeto.getCodigo());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+    
 }
